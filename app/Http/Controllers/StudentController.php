@@ -30,7 +30,7 @@ class StudentController extends Controller
 
         while (($row = fgetcsv($file)) !== false) {
             $total++;
-            
+
             $name = isset($row[0]) ? trim($row[0]) : '';
             $class = isset($row[1]) ? trim($row[1]) : '';
             $phone = isset($row[2]) ? trim($row[2]) : '';
@@ -90,6 +90,9 @@ class StudentController extends Controller
             'failed' => $failed,
             'details' => $details,
         ];
+
+
+
 
         try {
             Mail::to('admin@test.com')->queue(new ImportCompletedEmail($importData));
